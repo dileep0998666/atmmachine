@@ -35,7 +35,27 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script> document.getElementById('createAccountForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const account = parseInt(document.getElementById('createAccount').value, 10);
+            const initialBalance = parseFloat(document.getElementById('initialBalance').value);
+
+            fetch('/account/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ account, initialBalance }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const message = data.message ? data.message : data.error;
+                document.getElementById('createAccountMessage').innerText = message;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 
 </html>
