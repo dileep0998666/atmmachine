@@ -35,7 +35,9 @@
     </div>
 
     <!-- Scripts -->
-    <script> document.getElementById('createAccountForm').addEventListener('submit', function (event) {
+    <script>
+        // Event listener for creating an account
+        document.getElementById('createAccountForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent default form submission
 
             const account = parseInt(document.getElementById('createAccount').value, 10);
@@ -56,6 +58,7 @@
             .catch(error => console.error('Error:', error));
         });
     </script>
+</body>
 </body>
 
 </html>
